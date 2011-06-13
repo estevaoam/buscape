@@ -1,8 +1,8 @@
-== BuscaPé
+== BuscaPÃ©
 
 'Beware: This gem is under development and has not been tested on production environment yet.'
 
-This is the lightweight wrapper for BuscaPé API. (http://developer.buscape.com)
+This is the lightweight wrapper for BuscaPÃ© API. (http://developer.buscape.com)
 
 = How to install?
 
