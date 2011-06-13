@@ -3,25 +3,30 @@ require 'httparty'
 class BuscaPe
   include HTTParty
   
-  BASE_URI = "sandbox.buscape.com/service"
-  @application_id = "<your_application_id_here>"
-  
-  @uris = {
-    :categories => "findCategoryList",
-    :products => "findProductList",
-    :ratings => "viewUserRatings",
-    :oferts => "findOfferList",
-    :details => "viewProductDetails"
-  }
-  
-  @params = {
-    :category => "categoryId",
-    :product => "productId",
-    :top_products => "topProducts",
-    :seller => "sellerId"
-  }
-  
-  @data = {}
+  def initialize(options = {})
+    
+    raise "You need to inform your :application_id" if options[:application_id].nil?
+    
+    @base_uri = "sandbox.buscape.com/service" unless options[:sandbox].nil? || !options[:sandbox]
+    @application_id = options[:application_id];
+
+    @uris = {
+      :categories => "findCategoryList",
+      :products => "findProductList",
+      :ratings => "viewUserRatings",
+      :oferts => "findOfferList",
+      :details => "viewProductDetails"
+    }
+
+    @params = {
+      :category => "categoryId",
+      :product => "productId",
+      :top_products => "topProducts",
+      :seller => "sellerId"
+    }
+
+    @data = {}
+  end
   
   private
   
@@ -39,7 +44,7 @@ class BuscaPe
     
     @uris[method] = "viewSellerDetails" if method === :details && !@data[:seller].blank? && @data[:product].blank?
     
-    url = "http://#{BASE_URI}/#{@uris[method]}/#{@application_id}/"
+    url = "http://#{@base_uri}/#{@uris[method]}/#{@application_id}/"
 
     @data.each { |sym, value|
       url += ((url[-1, 1] == "/") ? "?" : "&") + "#{(@params[sym].blank?) ? sym.to_s : @params[sym]}=#{value}" 

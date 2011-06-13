@@ -1,1 +1,27 @@
+== BuscaPé
 
+'Beware: This gem is under development and has not been tested on production environment yet.'
+
+This is the lightweight wrapper for BuscaPé API. (http://developer.buscape.com)
+
+= How to install?
+
+Simple as: 
+
+  gem install buscape
+
+= How to use?
+
+First a new 'Buscape::Base' object with two parameters (application_id, sandbox? (default: false)):
+
+  b = Buscape::Base.new("you_application_id")
+
+Then you can use like this:
+
+  b.category(77).products
+
+This get all products in the cellphone category.
+
+Easy, huh? :P
+
+Help me improving this gem (and the documentation of course)! Fork this project and feel free to help. :)
